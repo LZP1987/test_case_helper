@@ -3,14 +3,14 @@
 """
 @author:三哥
 @email:516264135@qq.com
-@file:execute_shell.py
+@file:send_cmd_by_serial.py
 @time:2020/07/24
 """
-
 
 import serial  # 导入串口包
 import serial.tools.list_ports
 import time  # 导入时间包
+
 
 class send_cmd_by_serial:
     def __init__(self):
@@ -31,8 +31,8 @@ class send_cmd_by_serial:
 
     def sendCmd(self):
         while True:
-            count = self.ser.inWaiting() # 获取串口缓冲区数据
-            if count !=0 :
+            count = self.ser.inWaiting()  # 获取串口缓冲区数据
+            if count != 0:
                 recv = self.ser.read(self.ser.in_waiting).decode("gbk")  # 读出串口数据，数据采用gbk编码
                 print(time.time(), " ---  recv --> ", recv)  # 打印一下子
             time.sleep(0.1)  # 延时0.1秒，免得CPU出问题
@@ -42,6 +42,7 @@ class send_cmd_by_serial:
 
     def __str__(self):
         return (self.ser)
+
 
 if __name__ == '__main__':
     sendCmdSerial = send_cmd_by_serial()
