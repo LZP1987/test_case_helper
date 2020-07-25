@@ -1,0 +1,31 @@
+<collection shelf="New Arrivals">
+    <case title="LCD TEST">
+        <cmd AT="OPEN_LCD_TEST">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="delay_ms=1000">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="GET_LCD_TEST_RESULT">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="CLOSE_LCD_TEST">
+            <return>OK</return>
+        </cmd>
+    </case>
+    <case title="LED TEST">
+        <cmd AT="OPEN_LED_TEST">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="delay_ms=1000">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="GET_LED_TEST_RESULT">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="CLOSE_LED_TEST">
+            <return>OK</return>
+        </cmd>
+    </case>
+
+</collection>

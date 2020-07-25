@@ -1,0 +1,45 @@
+<collection shelf="New Arrivals">
+    <case title="KEY TEST">
+        <cmd AT="OPEN_KEY_TEST">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="delay_ms=1000">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="GET_KEY_TEST_RESULT">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="CLOSE_KEY_TEST">
+            <return>OK</return>
+        </cmd>
+    </case>
+    <case title="NFC TEST">
+        <cmd AT="OPEN_NFC_TEST">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="delay_ms=1000">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="GET_NFC_TEST_RESULT">
+            <return>1</return>
+        </cmd>
+        <cmd AT="CLOSE_NFC_TEST">
+            <return>OK</return>
+        </cmd>
+    </case>
+    <case title="GYRO TEST">
+        <cmd AT="OPEN_GYRO_TEST">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="delay_ms=1000">
+            <return>OK</return>
+        </cmd>
+        <cmd AT="GET_GYRO_VALUE?">
+            <return>100,1000,3</return>
+        </cmd>
+        <cmd AT="CLOSE_NFC_TEST">
+            <return>OK</return>
+        </cmd>
+    </case>
+
+</collection>
