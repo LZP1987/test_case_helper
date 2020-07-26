@@ -7,54 +7,71 @@
 @time:2020/07/25
 """
 
-from tkinter import *
+import tkinter as TK
 import tkinter.ttk as ttk
-
-
-def callbackFunction():
-    print('callBack run!')
+from tkinter.scrolledtext import ScrolledText
 
 
 class build_frame:
-
-    def __init__(self, frameX, frameY):
-        self.btnX = 50
+    def __init__(self, root, frameX, frameY):
+        self.btnX = 5
         self.btnY = 10
+        self.btnFont = ("隶书", 14)
         self.frameX = frameX
         self.frameY = frameY
+        root.update()
+        self.width = root.winfo_width()
+        self.height = root.winfo_height()
+        print("当前窗口的宽度为{}x{}".format(self.width, self.height))
 
-    def __addTextview(self, root):
-        # print(self.root.grid_size())
-        text = Text(root, width=50, height=40)  # 显示文本框
-        text.place(x=10, y=100)
+    def callbackFunction(self):
+        self.receiveText.insert("end", "\nPython.com!")
+
+    def clearReceive(self):
+        self.receiveText.delete(0.0, TK.END)
+
+    def __addReceiveTextview(self, root):
+        # 滚动文本框（宽，高（这里的高应该是以行数为单位），字体样式）
+        self.receiveText = TK.Text(root, width=self.width-4, height=34, font=("隶书", 14))  # 显示文本框
+        self.receiveText.place(x=2, y=50)
+
+        self.scroll = TK.Scrollbar(root)
+        self.scroll.config(command=self.receiveText.yview())  # 将文本框关联到滚动条上，滚动条滑动，文本框跟随滑动
+        self.scroll.pack(side=TK.RIGHT, fill=TK.Y)  # side是滚动条放置的位置，上下左右。fill是将滚动条沿着y轴填充
+        self.receiveText.config(yscrollcommand=self.scroll.set)  # 将滚动条关联到文本框
+        self.receiveText.insert("insert", "I love ")
+        self.receiveText.insert("end", "Python.com!\n")
 
     def __addButton(self, root, btnName, callBack):
-        button = Button(root, text=btnName, width=5, command=callBack)
+        button = TK.Button(root, text=btnName, font=self.btnFont, width=5, command=callBack)
         button.place(x=self.btnX, y=self.btnY)
-        self.btnX = self.btnX + 50
+        self.btnX = self.btnX + 100
 
     def buildFrame(self, root, frameName):
-        self.btnX = 50
+        root.update()
+        print("当前窗口的宽度为", root.winfo_width())
+        self.btnX = 5
         self.btnY = 10
-        tab = Frame(root)  # 创建一页框架
+        tab = TK.Frame(root)  # 创建一页框架
         tab.place(x=self.frameX, y=self.frameY)
-        root.add(tab, text=frameName)  # 将第一页插入分页栏中
+        root.add(tab, text=frameName)  # 将一页插入分页栏中
         self.frameX = self.frameX + 100
         # add button
-        self.__addButton(tab, 'start', callbackFunction)
-        self.__addButton(tab, 'stop', callbackFunction)
+        self.__addButton(tab, 'start', self.callbackFunction)
+        self.__addButton(tab, 'stop', self.clearReceive)
         # add textview
-        self.__addTextview(tab)
+        self.__addReceiveTextview(tab)
 
 
 if __name__ == '__main__':
-    root = Tk()
+    root = TK.Tk()
     root.title('Test Case Helper')
-    root.geometry('1600x1000+5+5')
+    root.geometry('1366x768+5+5')
 
     tab_main = ttk.Notebook()  # 创建分页栏
-    tab_main.place(relx=0.02, rely=0.02, relwidth=0.887, relheight=0.876)
+    tab_main.place(relx=0.01, rely=0.02, relwidth=1.0-0.01, relheight=1.0-0.03)
 
-    tabx = build_frame(0, 30)
+    tabx = build_frame(tab_main, 0, 30)
     tabx.buildFrame(tab_main, 'worker1')
+
     root.mainloop()
