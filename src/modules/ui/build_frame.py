@@ -9,15 +9,10 @@
 
 import tkinter as TK
 import tkinter.ttk as ttk
-# import modules.socket.send_cmd_by_socket as SEND_CMD
 import modules.send_cmd_controler.send_cmd_controler as SEND_CONTROLER
 import modules.xml.test_case_parser as CMD_PARSER
 import os
 
-# if __name__ == '__main__':
-#     import modules.socket.send_cmd_by_socket as SEND_CMD
-# else:
-#     import socket.send_cmd_by_socket as SEND_CMD
 
 
 class build_frame:
@@ -59,8 +54,7 @@ class build_frame:
         self.scroll.config(command=self.receiveText.yview())  # 将文本框关联到滚动条上，滚动条滑动，文本框跟随滑动
         self.scroll.pack(side=TK.RIGHT, fill=TK.Y)  # side是滚动条放置的位置，上下左右。fill是将滚动条沿着y轴填充
         self.receiveText.config(yscrollcommand=self.scroll.set)  # 将滚动条关联到文本框
-        self.receiveText.insert("insert", "I love ")
-        self.receiveText.insert("end", "Python.com!\n")
+        self.receiveText.insert("insert", "Welcome!")
 
     def __addButton(self, root, btnName, callBack):
         button = TK.Button(root, text=btnName, font=self.btnFont, width=5, command=callBack)
@@ -83,10 +77,11 @@ class build_frame:
         self.__addReceiveTextview(tab)
 
 
+
 if __name__ == '__main__':
     root = TK.Tk()
     root.title('Test Case Helper')
-    root.geometry('1366x768+5+5')
+    root.geometry('1366x768+2+2')
 
     tab_main = ttk.Notebook()  # 创建分页栏
     tab_main.place(relx=0.01, rely=0.02, relwidth=1.0 - 0.01, relheight=1.0 - 0.03)
